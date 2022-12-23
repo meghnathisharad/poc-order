@@ -43,8 +43,22 @@ public class AlertProcess {
 	//@Scheduled(cron = "0 0 10,14,17 * * MON-FRI")
 	@Scheduled(cron = "0 */1 * ? * *")
 	public void batchFileScheduler() {
-		
+		//this.createTables();
 		this.processBatchFile();
+	}
+
+	public void createTables(){
+
+		for(int i = 0; i < 4; i++){
+			KddReviewOwner kddReviewOwner = new KddReviewOwner();
+			kddReviewOwner.setOwnerSeqId(Long.valueOf(i+1));
+			kddReviewOwnerService.save(kddReviewOwner);
+
+			KddReview kddReview = new KddReview();
+			kddReview.setOwnerSeqId(Long.valueOf(i+1));
+			kddReview.setRemark("#" + i+1 + " record");
+			kddReviewService.save(kddReview);
+		}
 	}
 
 	public void processBatchFile() {

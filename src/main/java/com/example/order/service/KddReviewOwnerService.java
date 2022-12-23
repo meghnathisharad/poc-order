@@ -27,4 +27,9 @@ public class KddReviewOwnerService {
             return null;
 
     }
+
+    public KddReviewOwner save(KddReviewOwner kddReviewOwner){
+        kddReviewOwnerRepository.save(kddReviewOwner);
+        return kddReviewOwner;
+    }
 }
